@@ -30,5 +30,34 @@ public class RescueCenter {
         }
     }
 
-    // add a method here
+    // get a list of recovered animals
+    public ArrayList<Animal> getRecoverAnimals() {
+        ArrayList<Animal> recovered = new ArrayList<>();
+        for (Animal animal : animalList) {
+            if (animal.isRecovered()) {
+                recovered.add(animal);
+            }
+        }
+        return recovered;
+    }
+
+    // replenish food/medical supplies
+    public void replenishSupplies(String supplyType, int amount) {
+        if (supplyType.equals("food")) {
+            foodSupply += amount;
+        }
+        else if (supplyType.equals("medical")) {
+            medicalSupply += amount;
+        }
+        System.out.println(supplyType + " supply replenished by " + amount + ".");
+    }
+
+    // getter methods for supplies
+    public int getFoodSupply() {
+        return foodSupply;
+    }
+
+    public int getMedicalSupply() {
+        return medicalSupply;
+    }
 }

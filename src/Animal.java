@@ -6,11 +6,11 @@ public class Animal {
 
     // first constructor
     // String [] = declares the parameter as an array
-    public Animal(String species, int healthStatus, String [] careNeeds, double recoveryProgress){
+    public Animal(String species, int healthStatus, String [] careNeeds){
         this.species = species;
         this.healthStatus = healthStatus;
         this.careNeeds = careNeeds;
-        this.recoveryProgress = recoveryProgress;
+        this.recoveryProgress = 0.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ;
     }
 
     // first method
