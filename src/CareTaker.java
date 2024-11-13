@@ -9,22 +9,22 @@ public class CareTaker {
 
     public boolean careForAnimal(RescueCenter center, String careType, Animal animal) {
         if (energy > 0) {
-            center.provideCare(careType, animal);
-            energy--;
-            return true;
+            boolean success = center.provideCare(careType, animal);
+            if (success) {
+                energy--;
+            }
+            return success;
         }
-        else {
-//            System.out.println(name + " is too tired to care for animals right now.");
-            return false;
-        }
+        return false;
     }
+
 
     public void rest() {
         energy += 5;
-        System.out.println(name + " has rested and regained energy.");
     }
 
     public int getEnergy() {
         return energy;
     }
 }
+

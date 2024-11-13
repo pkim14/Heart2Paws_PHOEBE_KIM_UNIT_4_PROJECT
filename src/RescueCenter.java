@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class RescueCenter {
-    private ArrayList<Animal> animalList;
+    private final ArrayList<Animal> animalList;
     private int foodSupply;
     private int medicalSupply;
 
@@ -13,25 +14,23 @@ public class RescueCenter {
 
     public void addAnimal(Animal animal) {
         animalList.add(animal);
-        System.out.println("Added " + animal.getSpecies() + " the rescue center.");
     }
 
-    public void provideCare(String careType, Animal animal) {
-        if(careType.equals("food") && foodSupply > 0) {
-            animal.receiveCare("food");
-            foodSupply --;
+    public boolean provideCare(String careType, Animal animal) {
+        if (careType.equals("food") && foodSupply > 0) {
+            boolean caredFor = animal.receiveCare("food");
+            if (caredFor) foodSupply--;
+            return caredFor;
+        } else if (careType.equals("medicine") && medicalSupply > 0) {
+            boolean caredFor = animal.receiveCare("medicine");
+            if (caredFor) medicalSupply--;
+            return caredFor;
         }
-        else if(careType.equals("medicine") && medicalSupply > 0) {
-            animal.receiveCare("medicine");
-            medicalSupply --;
-        }
-        else {
-            System.out.println("Not enough supplies for " + careType + ".");
-        }
+        return false;
     }
 
     // get a list of recovered animals
-    public ArrayList<Animal> getRecoverAnimals() {
+    public ArrayList<Animal> getRecoveredAnimals() {
         ArrayList<Animal> recovered = new ArrayList<>();
         for (Animal animal : animalList) {
             if (animal.isRecovered()) {
@@ -49,7 +48,19 @@ public class RescueCenter {
         else if (supplyType.equals("medical")) {
             medicalSupply += amount;
         }
-        System.out.println(supplyType + " supply replenished by " + amount + ".");
+    }
+
+    public void simulateDay(){
+        Random random = new Random();
+        for (Animal animal : animalList) {
+            animal.updateHealth();
+
+            if (random.nextInt(10) < 2) {
+                foodSupply = Math.max(0, foodSupply -1);
+                medicalSupply = Math.max(0, medicalSupply - 1);
+            }
+        }
+
     }
 
     // getter methods for supplies
@@ -59,5 +70,9 @@ public class RescueCenter {
 
     public int getMedicalSupply() {
         return medicalSupply;
+    }
+
+    public ArrayList<Animal> getAnimalList() {
+        return animalList;
     }
 }

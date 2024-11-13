@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Animal {
     private String species;
     private int healthStatus;
@@ -14,14 +16,15 @@ public class Animal {
     }
 
     // first method
-    public void receiveCare(String careType){
+    public boolean receiveCare(String careType){
         for(String need : careNeeds) {
             if(need.equalsIgnoreCase(careType)) {
                 healthStatus += 10;
                 recoveryProgress += 0.1;
-                System.out.println(species + " received " + careType + " care. Health: " + healthStatus);
+                return true;
             }
         }
+        return false;
     }
 
     // second method
@@ -31,8 +34,11 @@ public class Animal {
 
     // third method
     public void updateHealth() {
-        healthStatus -= 5;
-        if (healthStatus < 0) healthStatus = 0;
+        Random random = new Random();
+        if (random.nextBoolean()) {
+            healthStatus -= 5;
+            if (healthStatus < 0) healthStatus = 0;
+        }
     }
 
     // getter methods
