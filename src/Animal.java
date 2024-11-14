@@ -20,7 +20,7 @@ public class Animal {
         for(String need : careNeeds) {
             if(need.equalsIgnoreCase(careType)) {
                 healthStatus += 10;
-                recoveryProgress += 0.1;
+                recoveryProgress += 2;
                 return true;
             }
         }
