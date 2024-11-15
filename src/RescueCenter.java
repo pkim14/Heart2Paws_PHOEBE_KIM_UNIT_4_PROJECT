@@ -17,14 +17,18 @@ public class RescueCenter {
     }
 
     public boolean provideCare(String careType, Animal animal) {
-        if (careType.equals("food") && foodSupply > 0) {
+        if (careType.equalsIgnoreCase("food") && foodSupply > 0) {
             boolean caredFor = animal.receiveCare("food");
-            if (caredFor) foodSupply--;
-            return caredFor;
-        } else if (careType.equals("medicine") && medicalSupply > 0) {
+            if (caredFor) {
+                foodSupply--;
+                return true;
+            }
+        } else if (careType.equalsIgnoreCase("medicine") && medicalSupply > 0) {
             boolean caredFor = animal.receiveCare("medicine");
-            if (caredFor) medicalSupply--;
-            return caredFor;
+            if (caredFor) {
+                medicalSupply--;
+                return true;
+            }
         }
         return false;
     }

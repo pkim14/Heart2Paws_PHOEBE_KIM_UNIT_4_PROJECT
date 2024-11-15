@@ -33,9 +33,12 @@ public class Main {
             if (animalChoice > 0 && animalChoice <= animals.size()) {
                 Animal chosenAnimal = animals.get(animalChoice - 1);
 
-                System.out.println("Choose care type (1 food, 2 for medical): ");
-                int careTypeChoice = s.nextInt();
-                String careType = (careTypeChoice == 1) ? "food" : "medical";
+                System.out.println("Choose care type: 1 for Food, 2 for Medical");
+                int careChoice = s.nextInt();
+                String careType = careChoice == 1 ? "food" : "medical";
+
+
+
 
                 boolean success = careTaker.careForAnimal(rescueCenter, careType, chosenAnimal);
                 if (success) {
@@ -66,13 +69,7 @@ public class Main {
                 System.out.println(animal.getSpecies() + " has recovered and can be released!");
                 rescueCenter.getAnimalList().remove(animal);
             }
-
             careTaker.rest();
-
-//            for (Animal animal : rescueCenter.getAnimalList()) {
-//                careTaker.careForAnimal(rescueCenter, "food", dog);
-//                careTaker.careForAnimal(rescueCenter, "medical", bunny);
-//            }
         }
         s.close();
         }
