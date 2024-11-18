@@ -1,9 +1,9 @@
 import java.util.Random;
 
 public class Animal {
-    private String species;
+    private final String species;
     private int healthStatus;
-    private String [] careNeeds;
+    private final String [] careNeeds;
     private double recoveryProgress;
 
     // first constructor
@@ -20,16 +20,17 @@ public class Animal {
         for(String need : careNeeds) {
             if(need.equalsIgnoreCase(careType)) {
                 healthStatus += 10;
-                recoveryProgress += 2;
+                recoveryProgress += 0.2;
                 return true;
             }
-        }
+//                    return true;
+                }
         return false;
     }
 
     // second method
     public boolean isRecovered() {
-        return recoveryProgress >= 1.0;
+        return recoveryProgress >= 5.0;
     }
 
     // third method

@@ -7,10 +7,15 @@ public class Main {
         RescueCenter rescueCenter = new RescueCenter(10, 5);
         CareTaker careTaker = new CareTaker("Ivan", 10);
 
-        Animal dog = new Animal("Dog", 50, new String [] {"food", "medical"});
-        Animal bunny = new Animal("Bunny", 30, new String[] {"food"});
+        Animal dog = new Animal("Dog", 50, new String[] {"food", "medical"});
+        Animal bunny = new Animal("Bunny", 30, new String[] {"food", "medical"});
+        Animal snake = new Animal("Snake", 75, new String[] {"food", "medical"});
+        Animal parrot = new Animal("Parrot", 64, new String[] {"food", "medical"});
+
         rescueCenter.addAnimal(dog);
         rescueCenter.addAnimal(bunny);
+        rescueCenter.addAnimal(snake);
+        rescueCenter.addAnimal(parrot);
 
         for (int day = 1; day <= 5; day++) {
             System.out.println("Day " + day);
@@ -36,9 +41,6 @@ public class Main {
                 System.out.println("Choose care type: 1 for Food, 2 for Medical");
                 int careChoice = s.nextInt();
                 String careType = careChoice == 1 ? "food" : "medical";
-
-
-
 
                 boolean success = careTaker.careForAnimal(rescueCenter, careType, chosenAnimal);
                 if (success) {

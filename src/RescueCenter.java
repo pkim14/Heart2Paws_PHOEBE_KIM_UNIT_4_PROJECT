@@ -18,14 +18,12 @@ public class RescueCenter {
 
     public boolean provideCare(String careType, Animal animal) {
         if (careType.equalsIgnoreCase("food") && foodSupply > 0) {
-            boolean caredFor = animal.receiveCare("food");
-            if (caredFor) {
+            if (animal.receiveCare("food")) {
                 foodSupply--;
                 return true;
             }
-        } else if (careType.equalsIgnoreCase("medicine") && medicalSupply > 0) {
-            boolean caredFor = animal.receiveCare("medicine");
-            if (caredFor) {
+        } else if (careType.equalsIgnoreCase("medical") && medicalSupply > 0) {
+            if (animal.receiveCare("medical")){
                 medicalSupply--;
                 return true;
             }

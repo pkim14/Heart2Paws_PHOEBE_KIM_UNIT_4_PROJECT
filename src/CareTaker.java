@@ -12,8 +12,8 @@ public class CareTaker {
             boolean success = center.provideCare(careType, animal);
             if (success) {
                 energy--;
+                return true;
             }
-            return success;
         }
         return false;
     }
