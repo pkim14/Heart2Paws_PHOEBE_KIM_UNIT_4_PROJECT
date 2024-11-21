@@ -17,6 +17,8 @@ public class Main {
         rescueCenter.addAnimal(snake);
         rescueCenter.addAnimal(parrot);
 
+        boolean continueSimulation = true;
+
         for (int day = 1; day <= 5; day++) {
             System.out.println("Day " + day);
 
@@ -31,6 +33,11 @@ public class Main {
             for (int i = 0; i < animals.size(); i++) {
                 Animal animal = animals.get(i);
                 System.out.println(i + 1 + "." + animal.getSpecies() + " (Health: " + animal.getHealthStatus() + ", Recovery Progress: " + animal.getRecoveryProgress() + ")");
+            }
+
+            if (animals.isEmpty()) {
+                System.out.println("No animals remain in the Rescue Center.");
+                break; // may need to change
             }
 
             System.out.println("Enter the number of the animal you want to care for, or 0 to skip: ");
@@ -55,6 +62,7 @@ public class Main {
 
             System.out.println("Would you like to replenish supplies? Enter 'yes' to replenish or 'no' to continue.");
             String replenishChoice = s.next();
+
             if (replenishChoice.equalsIgnoreCase("yes")) {
                 System.out.println("Choose supply to replenish: 1 for Food, 2 for Medical");
                 int supplyChoice = s.nextInt();
@@ -64,6 +72,15 @@ public class Main {
 
                 rescueCenter.replenishSupplies(supplyType, amount);
                 System.out.println(supplyType + " supply replenished by " + amount + ".");
+            }
+            else {
+                System.out.println("Do you want to continue the simulation? Enter 'yes' or 'no'.");
+                String continueChoice = s.next();
+
+                if (!continueChoice.equalsIgnoreCase("yes")) {
+                    continueSimulation = false;
+                    System.out.println("Ending simulation.");
+                }
             }
 
             ArrayList<Animal> recoveredAnimals = rescueCenter.getRecoveredAnimals();
