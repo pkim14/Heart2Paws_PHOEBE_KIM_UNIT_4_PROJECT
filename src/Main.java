@@ -60,6 +60,7 @@ public class Main {
                     System.out.println("No care was provided to animals today.");
             }
 
+
             System.out.println("Would you like to replenish supplies? Enter 'yes' to replenish or 'no' to continue.");
             String replenishChoice = s.next();
 
@@ -72,6 +73,8 @@ public class Main {
 
                 rescueCenter.replenishSupplies(supplyType, amount);
                 System.out.println(supplyType + " supply replenished by " + amount + ".");
+                System.out.println("------------------------------------------------------------------------------------");
+
             }
             else {
                 System.out.println("Do you want to continue the simulation? Enter 'yes' or 'no'.");
@@ -80,6 +83,10 @@ public class Main {
                 if (!continueChoice.equalsIgnoreCase("yes")) {
                     continueSimulation = false;
                     System.out.println("Ending simulation.");
+                    System.out.println("------------------------------------------------------------------------------------");
+                }
+                else {
+                    continueSimulation = true;
                 }
             }
 
@@ -87,6 +94,8 @@ public class Main {
             for (Animal animal : recoveredAnimals) {
                 System.out.println(animal.getSpecies() + " has recovered and can be released!");
                 rescueCenter.getAnimalList().remove(animal);
+                System.out.println("------------------------------------------------------------------------------------");
+
             }
             careTaker.rest();
         }

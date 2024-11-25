@@ -2,7 +2,7 @@
  * Represents a caretaker responsible for providing care to animals in the rescue center
  */
 public class CareTaker {
-    private String name;
+    private final String name;
     private int energy;
 
     /**
