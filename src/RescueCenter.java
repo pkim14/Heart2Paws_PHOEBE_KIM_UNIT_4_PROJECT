@@ -12,7 +12,7 @@ public class RescueCenter {
     /**
      * Constructor for the RescueCenter class. This creates a new instance of the Rescue Center given the below parameters.
      *
-     * @param foodSupply represents the intital quantity of food supplies
+     * @param foodSupply represents the initial quantity of food supplies
      * @param medicalSupply represents the initial quantity of medical supplies
      */
     public RescueCenter(int foodSupply, int medicalSupply) {
@@ -68,6 +68,23 @@ public class RescueCenter {
     }
 
     /**
+     * Checks if supplies can be replenished based on the supply type & amount
+     *
+     * @param supplyType represents the type of supply to replenish
+     * @param amount represents the quantity of supplies to add
+     * @return true if the supplies can be replenished
+     */
+    public boolean canReplenishSupplies(String supplyType, int amount) {
+        if (!supplyType.equals("food") && !supplyType.equals("medical")) {
+            return false;
+        }
+        if (amount <= 0) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Replenishes food or medical supplies by a specified amount
      *
      * @param supplyType represents the type of supply to replenish (food or medical)
@@ -82,20 +99,20 @@ public class RescueCenter {
         }
     }
 
+
     /**
      * Simulate a day at the rescue center, updating animal health & potentially reducing supplies
      */
-    public void simulateDay(){
+    public void simulateDay() {
         Random random = new Random();
         for (Animal animal : animalList) {
             animal.updateHealth();
 
-            if (random.nextInt(10) < 2) {
-                foodSupply = Math.max(0, foodSupply -1);
+            if (random.nextInt(20) < 2) {
+                foodSupply = Math.max(0, foodSupply - 1);
                 medicalSupply = Math.max(0, medicalSupply - 1);
             }
         }
-
     }
 
     // Getter methods

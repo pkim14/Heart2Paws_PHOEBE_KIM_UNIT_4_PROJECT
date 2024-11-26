@@ -17,23 +17,36 @@ public class CareTaker {
     }
 
     /**
-     * Provides care to an animal if the caretaker has energy
+     * Provides care to an animal in the rescue center with a specified care amount
      *
-     * @param center represents the rescue center where care is being provided
-     * @param careType represents the type of care to be given (food or medical)
-     * @param animal represents the animal receiving care
-     * @return true if care is successfully provided, false otherwise
+     * @param center represents the RescueCenter where the animal is located
+     * @param careType represents the type of care to provide
+     * @param animal represents the specific animal receiving care
+     * @param careAmount represents the quantity of care that is provided
+     * @return true if at least unit of care was provided, false otherwise
      */
-    public boolean careForAnimal(RescueCenter center, String careType, Animal animal) {
-        if (energy > 0) {
-            boolean success = center.provideCare(careType, animal);
-            if (success) {
-                energy--;
-                return true;
+    public boolean careForAnimal(RescueCenter center, String careType, Animal animal, int careAmount) {
+        // check if caretaker has enough energy for the requested care amount
+        if (energy >= careAmount) {
+            int successfulCares = 0;
+
+            for (int i = 0; i < careAmount; i++) {
+                if (center.provideCare(careType, animal)) {
+                    successfulCares++;
+                    energy--;
+                } else {
+                    // stop if no more supplies or animal can't receive more care
+                    break;
+                }
             }
+
+            // return true if at least some care was provided
+            return successfulCares > 0;
         }
+
         return false;
     }
+
 
     /**
      * Allows the caretaker to rest & regain energy
